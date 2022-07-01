@@ -1,4 +1,11 @@
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+exports.generateToken = (userid) => {
+  const token = jwt.sign(userid, process.env.JWT_SECRET);
+  // const token = jwt.sign(userid, "MYBUDSECRET");
+  return token;
+};
 
 exports.hashPassword = (password) => {
   let hashedpassword = bcrypt.hashSync(password, 8);
